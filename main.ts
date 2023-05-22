@@ -17,100 +17,98 @@ enum Port {
     S3,
 }
 
-enum UltrasonicRange {
-    //% block="近于"
+enum Range {
+    //% block="Near"
     Near,
-    //% block="远于"
+    //% block="Far"
     Far,
-    //% block="等于"
+    //% block="Equal"
     Equal,
 }
 
 enum Led {
-    //% block="灭"
+    //% block="Turn Off"
     TurnOff,
-    //% block="亮"
-    TurnOn,
-
+    //% block="Bright"
+    Bright,
+    
 }
 
 enum Color {
-    //% block="白色"
-    White = 1,
-    //% block="黑色"
-    Black = 2,
-    //% block="黄色"
-    Yellow = 3,
-    //% block="绿色"
-    Green = 4,
-    //% block="蓝色"
-    Blue = 5,
-    //% block="紫色"
-    Purple = 6,
-    //% block="红色"
-    Red = 7,
-    //% block="天蓝色"
-    SkyBlue = 8
+    //% block="White"
+    White   = 1,
+    //% block="Black"
+    Black   = 2,    
+    //% block="Yellow"
+    Yellow  = 3,     
+    //% block="Green"
+    Green   = 4,    
+    //% block="Blue"
+    Blue    = 5,    
+    //% block="Purple"
+    Purple  = 6,    
+    //% block="Red"
+    Red     = 7,    
+    //% block="Sky Blue"
+    SkyBlue = 8   		
 }
 
 enum ColorMode {
-    //% block="红"
+    //% block="Red"
     Red = 1,
-    //% block="绿"
+    //% block="Green"
     Green = 2,
-    //% block="蓝"
+    //% block="Blue"
     Blue = 3,
 }
 
 enum Pressure {
-    //% block="松开"
+    //% block="Loosen"
     Loosen,
-    //% block="按压"
+    //% block="Press"
     Press,
-    //% block="用力按压"
+    //% block="Press Hard"
     PressHard
 }
 
 enum MotorDirection {
-    //% block="正转"
+    //% block="Foreward"
     Foreward = 0,
-    //% block="反转"
+    //% block="Reversal"
     Reversal = 1
 }
 
 enum MotorStopMode {
-    //% block="滑行"
+    //% block="Gliding"
     Gliding = 0,
-    //% block="制动"
+    //% block="Brake"
     Brake = 1
 }
 
 enum NeoPixelColors {
-    //% block="红色"
+    //% block="Red"
     Red = 0xFF0000,
-    //% block="橙色"
+    //% block="Orange"
     Orange = 0xFFA500,
-    //% block="黄色"
+    //% block="Yellow"
     Yellow = 0xFFFF00,
-    //% block="绿色"
+    //% block="Green"
     Green = 0x00FF00,
-    //% block="蓝色"
+    //% block="Blue"
     Blue = 0x0000FF,
-    //% block="靛蓝色"
+    //% block="Indigo"
     Indigo = 0x4b0082,
-    //% block="紫罗兰色"
+    //% block="Violet"
     Violet = 0x8a2be2,
-    //% block="紫色"
+    //% block="Purple"
     Purple = 0xFF00FF,
-    //% block="白色"
+    //% block="White"
     White = 0xFFFFFF,
-    //% block="黑色"
+    //% block="Black"
     Black = 0x000000
 }
 
-/**
- * Different modes for RGB or RGB+W NeoPixel strips
- */
+
 enum NeoPixelMode {
     //% block="RGB (GRB format)"
     RGB = 1,
@@ -122,9 +120,9 @@ enum NeoPixelMode {
 
 
 enum InfraredMode {
-    //% block="白"
+    //% block="White"
     White,
-    //% block="黑"
+    //% block="Black"
     Black,
 }
 
@@ -142,15 +140,15 @@ enum InfraredChoose {
 }
 
 enum IntersectionDirection {
-    //% block="直行"
+    //% block="Go Straight"
     GoStraight,
-    //% block="左转"
+    //% block="Turn Left"
     TurnLeft,
-    //% block="右转"
+    //% block="Turn Right"
     TurnRight,
-    //% block="停止"
+    //% block="Stop"
     Stop,
-    //% block="掉头"
+    //% block="TurnRound"
     TurnRound
 }
 
@@ -164,10 +162,10 @@ enum CrossingMode {
  * Custom blocks
  */
 
-//% groups="['显示', '运动', '事件', '侦测', '巡线']"
+//% groups="['Display', 'Motion', 'Events', 'Sensing', 'Line Patrol']"
 //% weight=100 color=#0fbc11 icon="" 
 namespace BanBao {
-    let coloraddr = 0x02 //0000 0100 右移一位，末位为读写位
+    let coloraddr    = 0x02 //0000 0100 右移一位，末位为读写位
     let pressureaddr = 0x08 //0001 0000 右移一位，末位为读写位
     let infraredaddr = 0x0a //0001 0100 右移一位，末位为读写位
     let stripBufS1 = pins.createBuffer(27)
@@ -187,42 +185,46 @@ namespace BanBao {
         _mode: 0,
     }
     let pidsetup = {
-        kp: 14.3,
-        ki: 0,
-        kd: 12.5,
-        P: 0,
-        I: 0,
-        D: 0,
-        pid_value: 0,
-        crossing_count: 0,
-        crossing_cumulative_count: 0,
-        crossing_flag: false,
-        crossing_mode: 0,
-        setup_speed: 55,
-        left_speed: 0,
-        right_speed: 0,
-        error: 0,
-        pre_error: 0,
-        mode: InfraredMode.Black,
-        straight_empty_flag: false,
+        kp:14.3,
+        ki:0,
+        kd:12.5,
+        P:0,
+        I:0,
+        D:0,
+        pid_value:0,
+        crossing_count:0,
+        crossing_cumulative_count:0,
+        crossing_flag:false,
+        crossing_mode:0,
+        setup_speed:55,
+        left_speed:0,
+        right_speed:0,
+        error:0,
+        pre_error:0,
+        mode:InfraredMode.Black,
+        straight_empty_flag:false,
     }
 
     //I2C写入函数
-    function i2cWriteVal(addr: number, value: number) {
+    function i2cWriteVal(addr:number,value:number)                
+    {
         pins.i2cWriteNumber(addr, value, NumberFormat.UInt8BE);
     }
     //I2C读取8位数据函数
-    function i2cReadVal8(addr: number) {
+    function i2cReadVal8(addr: number)                                        
+    {
         return pins.i2cReadNumber(addr, NumberFormat.UInt8BE);
     }
     //I2C读取16位数据函数
-    function i2cReadVal16(addr: number) {
+    function i2cReadVal16(addr: number) 
+    {
         return pins.i2cReadNumber(addr, NumberFormat.UInt16BE);
     }
     //压力传感器I2C读取数据函数
-    function pressureReadState(data: number) {
+    function pressureReadState(data:number)
+    {
         let value;
-        i2cWriteVal(pressureaddr, data);
+        i2cWriteVal(pressureaddr,data);
         basic.pause(18);
         i2cReadVal8(pressureaddr);//空读
         basic.pause(3);
@@ -272,7 +274,7 @@ namespace BanBao {
     }
 
     //像素灯单个灯RGB设置函数
-    function setPixelRGB(port: Port, pixeloffset: number, rgb: number): void {
+    function setPixelRGB(port:Port,pixeloffset: number, rgb: number): void {
         if (pixeloffset < 0 || pixeloffset >= 9)
             return;
 
@@ -284,9 +286,10 @@ namespace BanBao {
         let blue = unpackB(rgb);
 
         let br;
-        switch (port) {
+        switch(port)
+        {
             case Port.S1:
-                br = strip.brightnessS1;
+                br=strip.brightnessS1;
                 break;
             case Port.S2:
                 br = strip.brightnessS2;
@@ -306,7 +309,7 @@ namespace BanBao {
     }
 
     //像素灯所有灯RGB设置函数
-    function setAllRGB(port: Port, rgb: number) {
+    function setAllRGB(port:Port,rgb: number) {
         let red = unpackR(rgb);
         let green = unpackG(rgb);
         let blue = unpackB(rgb);
@@ -368,19 +371,24 @@ namespace BanBao {
         let g = (rgb >> 8) & 0xFF;
         return g;
     }
-
+ 
     //像素灯B值拆包函数
     function unpackB(rgb: number): number {
         let b = (rgb) & 0xFF;
         return b;
     }
-
+    
     /* 以下是积木生成函数 */
 
     /* 像素灯 */
 
-    //% blockId="neopixel_clear" block="像素灯 %port 关闭"
-    //% group="显示" 
+
+    /**
+     * Turn off all RGB lights.
+     * @param port Select connection port
+     */
+    //% blockId="neopixel_clear" block="RGB %port turn off"
+    //% group="Display" 
     //% color=#88cb7f
     //% weight=10
     export function clearAll(port: Port): void {
@@ -399,16 +407,17 @@ namespace BanBao {
         }
         const stride = 3;
         create(digitalPin, 9, NeoPixelMode.RGB);
-        setAllRGB(port, rgb);
+        setAllRGB(port,rgb);
         show(digitalPin);
     }
 
     /**
-     * Shows all LEDs to a given color (range 0-255 for r, g, b).
-     * @param rgb RGB color of the LED
+     * Shows all RGB lights to a given color.
+     * @param port Select connection port
+     * @param rgb RGB color of the RGB light
      */
-    //% blockId="neopixel_set_strip_color" block="像素灯 %port|全亮 颜色 %rgb"
-    //% group="显示" 
+    //% blockId="neopixel_set_strip_color" block="RGB %port|all lights color %rgb"
+    //% group="Display" 
     //% color=#88cb7f
     //% weight=10
     export function showColor(port: Port, rgb: NeoPixelColors) {
@@ -426,16 +435,17 @@ namespace BanBao {
         }
         create(digitalPin, 9, NeoPixelMode.RGB);
         rgb = rgb >> 0;
-        setAllRGB(port, rgb);
+        setAllRGB(port,rgb);
         show(digitalPin);
     }
 
     /**
-     * Set the brightness of the strip. This flag only applies to future operation.
-     * 
+     * Set the brightness of RGB lights.
+     * @param port Select connection port
+     * @param bright Brightness value
      */
-    //% blockId="neopixel_set_brightness" block="像素灯 %port 亮度 | %bright"
-    //% group="显示"
+    //% blockId="neopixel_set_brightness" block="RGB %port brightness | %bright"
+    //% group="Display"
     //% color=#88cb7f
     //% weight=10
     //% bright.min=0 bright.max=255 bright.defl=128
@@ -458,9 +468,15 @@ namespace BanBao {
         }
     }
 
-    //% block="像素灯 %port 第 | %pixeloffset 颗灯 颜色 | %rgb" 
+    /**
+     * Display the given RGB light as the given color.
+     * @param port Select connection port
+     * @param pixeloffset Given RGB light
+     * @param rgb RGB color of the RGB light
+     */
+    //% block="RGB %port Light | %pixeloffset color | %rgb" 
     //% pixeloffset.defl=1 pixeloffset.min=1 pixeloffset.max=9
-    //% group="显示" 
+    //% group="Display" 
     //% color=#88cb7f
     //% weight=10
     export function setPixelColor(port: Port, pixeloffset: number, rgb: NeoPixelColors): void {
@@ -476,17 +492,25 @@ namespace BanBao {
                 break;
         }
         pixeloffset = pixeloffset - 1
-        setPixelRGB(port, pixeloffset >> 0, rgb >> 0);
+        setPixelRGB(port,pixeloffset >> 0, rgb >> 0);
         show(strip.pin);
     }
 
-    //% block="像素灯 %port 第 | %pixeloffset 颗灯 颜色 R | %red G | %green B | %blue" 
+    /**
+     * Display the given RGB light as the color corresponding to the given RGB value.
+     * @param port Select connection port
+     * @param pixeloffset Given RGB light
+     * @param red Red value
+     * @param green Green value
+     * @param blue Blue value
+     */
+    //% block="RGB %port Light | %pixeloffset color R | %red G | %green B | %blue" 
     //% inlineInputMode=inline
     //% pixeloffset.defl=1 pixeloffset.min=1 pixeloffset.max=9
     //% red.defl=0 red.min=0 red.max=255
     //% green.defl=0 green.min=0 green.max=255
     //% blue.defl=0 blue.min=0 blue.max=255
-    //% group="显示"
+    //% group="Display"
     //% color=#88cb7f
     //% weight=10
     export function setPixelColorRGB(port: Port, pixeloffset: number, red: number, green: number, blue: number): void {
@@ -502,13 +526,18 @@ namespace BanBao {
                 break;
         }
         pixeloffset = pixeloffset - 1
-        setPixelRGB(port, pixeloffset >> 0, packRGB(red, green, blue) >> 0);
+        setPixelRGB(port,pixeloffset >> 0, packRGB(red, green, blue) >> 0);
         show(strip.pin);
     }
 
-    //% block="像素灯 %port 关闭第 | %pixeloffset 颗灯" 
+    /**
+     * Turn off the given RGB light.
+     * @param port Select connection port
+     * @param pixeloffset Given RGB light
+     */
+    //% block="RGB %port turn off Light | %pixeloffset" 
     //% pixeloffset.defl=1 pixeloffset.min=1 pixeloffset.max=9
-    //% group="显示"
+    //% group="Display"
     //% color=#88cb7f
     //% weight=10
     export function closePixelColor(port: Port, pixeloffset: number): void {
@@ -524,66 +553,87 @@ namespace BanBao {
                 break;
         }
         pixeloffset = pixeloffset - 1
-        setPixelRGB(port, pixeloffset >> 0, 0x000000);
+        setPixelRGB(port,pixeloffset >> 0, 0x000000);
         show(strip.pin);
     }
-
+    
 
     //控制直流电机正/反转函数
-    //% block="直流电机 %port 功率 | %power |%direction" 
+    /**
+     * Control the forward and reverse rotation of DC motors.
+     * @param port Select connection port
+     * @param power DC motor power
+     * @param direction Direction of rotation of DC motor
+     */
+    //% block="DC motor %port power | %power |%direction" 
     //% weight=80
     //% color=#44cef6
-    //% group="运动"
+    //% group="Motion"
     //% power.min=0 power.max=100
-    export function motorRotation(port: Port, power: number, direction: MotorDirection): void {
+    export function motorRotation(port: Port, power: number, direction: MotorDirection) : void
+    {
         let digitalpin
         let analogpin
-        switch (port) {
+        switch (port) 
+        {
             case Port.S3:
-                if (direction === MotorDirection.Foreward) {
+                if (direction === MotorDirection.Foreward)
+                {
                     analogpin = AnalogPin.P2
                     digitalpin = DigitalPin.P12
                 }
-                else {
+                else
+                {
                     analogpin = AnalogPin.P12
                     digitalpin = DigitalPin.P2
                 }
                 break;
             case Port.S2:
-                if (direction === MotorDirection.Foreward) {
+                if (direction === MotorDirection.Foreward) 
+                {
                     analogpin = AnalogPin.P1
                     digitalpin = DigitalPin.P9
                 }
-                else {
+                else 
+                {
                     analogpin = AnalogPin.P9
                     digitalpin = DigitalPin.P1
                 }
                 break;
             case Port.S1:
-                if (direction === MotorDirection.Foreward) {
+                if (direction === MotorDirection.Foreward) 
+                {
                     analogpin = AnalogPin.P16
                     digitalpin = DigitalPin.P8
                 }
-                else {
+                else 
+                {
                     analogpin = AnalogPin.P8
                     digitalpin = DigitalPin.P16
                 }
                 break;
         }
-
+        
         pins.digitalWritePin(digitalpin, 0)
         pins.analogWritePin(analogpin, power * 1023 / 100)
     }
 
     //控制直流电机停止函数
-    //% block="直流电机 %port | %mode 停止" 
+    /**
+     * Control the stop of the DC motor.
+     * @param port Select connection port
+     * @param mode Select the stop mode of the DC motor
+     */
+    //% block="DC motor %port | %mode stop" 
     //% weight=80
     //% color=#44cef6
-    //% group="运动"
-    export function motorStop(port: Port, mode: MotorStopMode): void {
+    //% group="Motion"
+    export function motorStop(port: Port,mode:MotorStopMode): void 
+    {
         let digitalpinone
         let digitalpintwo
-        switch (port) {
+        switch (port) 
+        {
             case Port.S3:
                 digitalpinone = DigitalPin.P2
                 digitalpintwo = DigitalPin.P12
@@ -597,22 +647,31 @@ namespace BanBao {
                 digitalpintwo = DigitalPin.P8
                 break;
         }
-        if (mode === MotorStopMode.Gliding) {
+        if(mode === MotorStopMode.Gliding)
+        {
             pins.digitalWritePin(digitalpinone, 0)
             pins.digitalWritePin(digitalpintwo, 0)
         }
-        else if (mode === MotorStopMode.Brake) {
+        else if(mode === MotorStopMode.Brake)
+        {
             pins.digitalWritePin(digitalpinone, 1)
-            pins.digitalWritePin(digitalpintwo, 1)
+            pins.digitalWritePin(digitalpintwo, 1)            
         }
     }
 
     /* 事件 */
+    /**
+     * Execute user events when a given measurement range is detected.
+     * @param port Select connection port
+     * @param range Select Comparison Mode
+     * @param num Specific values for comparison
+     * @param body User written tasks
+     */
     //% num.min=0 num.max=300 
-    //% block="距离 %port 当距离 | %range | %num CM时"
-    //% group="事件"
+    //% block="Distance %port When the distance is | %range | than %num CM"
+    //% group="Events"
     //% color=#f2a900
-    export function ultrasonicJudgeEvent(port: Port, range: UltrasonicRange, num: number, body: () => void): void {
+    export function ultrasonicJudgeEvent(port: Port, range: Range, num: number, body: () => void): void {
         control.inBackground(function () {
             while (true) {
                 if (ultrasonicJudge(port, range, num)) {
@@ -629,23 +688,29 @@ namespace BanBao {
     /* 超声波 */
 
     //超声波距离判断函数
+    /**
+     * Detect if the given distance range is met.
+     * @param port Select connection port
+     * @param range Select Comparison Mode
+     * @param num Specific values for comparison
+     */
     //% weight=20
     //% num.min=0 num.max=300 
-    //% block="距离 %value 距离 | %range | %num CM"
-    //% group="侦测" 
+    //% block="distance %value distance | %range | %num CM"
+    //% group="Sensing" 
     //% color=#fd803a
-    export function ultrasonicJudge(value: Port, range: UltrasonicRange, num: number): boolean {
-        const distance = ultrasonicDistance(value);
+    export function ultrasonicJudge(port: Port, range: Range, num: number): boolean {
+        const distance = ultrasonicDistance(port);
         switch (range) {
-            case UltrasonicRange.Near:
+            case Range.Near:
                 if (distance < num)
                     return true;
                 break;
-            case UltrasonicRange.Far:
+            case Range.Far:
                 if (distance > num)
                     return true;
                 break;
-            case UltrasonicRange.Equal:
+            case Range.Equal:
                 if (distance == num)
                     return true;
                 break;
@@ -656,14 +721,18 @@ namespace BanBao {
     }
 
     //读取超声波距离函数
+     /**
+     * Read Detected Distance.
+     * @param port Select connection port
+     */
     //% weight=20
-    //% block="距离 %value 距离(CM)"
-    //% group="侦测" 
+    //% block="distance %value distance(CM)"
+    //% group="Sensing" 
     //% color=#fd803a
-    export function ultrasonicDistance(value: Port): number {
+    export function ultrasonicDistance(port: Port): number {
         let trig
         let echo
-        switch (value) {
+        switch (port) {
             case Port.S3:
                 trig = DigitalPin.P2
                 echo = DigitalPin.P12
@@ -827,36 +896,54 @@ namespace BanBao {
 
     /* 红外巡线 */
 
-    //% block="红外巡线 %port | %mode1 | %mode2 | %mode3 | %mode4 | %mode5" 
+    /**
+     * Detect if the five infrared sensors meet the given mode.
+     * @param port Select connection port
+     * @param mode1 Given the first infrared mode
+     * @param mode2 Given the second infrared mode
+     * @param mode3 Given the third infrared mode
+     * @param mode4 Given the fourth infrared mode
+     * @param mode5 Given the fifth infrared mode
+     */
+    //% block="Infrared Line Patrol %port | %mode1 | %mode2 | %mode3 | %mode4 | %mode5" 
     //% weight=50
     //% color=#cfabef
     //% inlineInputMode=inline
-    //% group="巡线"
+    //% group="Line Patrol"
     //% port.defl=I2CPort.S4
-    export function fiveWayInfraredRead(port: I2CPort,
-        mode1: InfraredMode,
-        mode2: InfraredMode,
-        mode3: InfraredMode,
-        mode4: InfraredMode,
-        mode5: InfraredMode
-    ): boolean {
+    export function fiveWayInfraredRead(port: I2CPort, 
+    mode1: InfraredMode, 
+    mode2: InfraredMode,
+    mode3: InfraredMode, 
+    mode4: InfraredMode,
+    mode5: InfraredMode
+    ):boolean
+    {
         let i2cdata = 0;
         let value = 0;
         value = mode1 << 4 | mode2 << 3 | mode3 << 2 | mode4 << 1 | mode5 << 0
-        i2cWriteVal(infraredaddr, 0x5a);
-        i2cdata = i2cReadVal8(infraredaddr);
+        i2cWriteVal(infraredaddr,0x5a);
+        i2cdata = i2cReadVal8(infraredaddr);  
         i2cdata &= ~0xE0
-        if (i2cdata === value) {
-            return true;
+        if (i2cdata === value)
+        {
+            return true;  
         }
         return false;
     }
 
-    //% block="红外巡线 %port | %mode1 | %mode2 | %mode3" 
+    /**
+     * Detect if the middle three infrared sensors meet the given mode.
+     * @param port Select connection port
+     * @param mode1 Given the first infrared mode
+     * @param mode2 Given the second infrared mode
+     * @param mode3 Given the third infrared mode
+     */
+    //% block="Infrared Line Patrol %port | %mode1 | %mode2 | %mode3" 
     //% weight=55
     //% color=#cfabef
     //% inlineInputMode=inline
-    //% group="巡线"
+    //% group="Line Patrol"
     //% port.defl=I2CPort.S4
     export function threeWayInfraredRead(port: I2CPort,
         mode1: InfraredMode,
@@ -875,34 +962,51 @@ namespace BanBao {
         return false;
     }
 
-    //% block="红外巡线 %port | 参数 Kp%kp | Ki%ki | Kd%kd"
-    //% group="巡线"
+    /**
+     * Adjusting the PID value of infrared line patrol.
+     * @param port Select connection port
+     * @param kp P Scale factor
+     * @param ki I Scale factor
+     * @param kd D Scale factor
+     */
+    //% block="Infrared Line Patrol %port | 参数 Kp%kp | Ki%ki | Kd%kd"
+    //% group="Line Patrol"
     //% inlineInputMode=inline
     //% weight=90
     //% color=#cfabef
     //% port.defl=I2CPort.S4 kp.defl=25 ki.defl=0 kd.defl=40
-    export function fiveWayInfraredPidSet(port: I2CPort, kp: number, ki: number, kd: number) {
+    export function fiveWayInfraredPidSet(port: I2CPort,kp:number,ki:number,kd:number) {
         pidsetup.kp = kp
         pidsetup.ki = ki
         pidsetup.kd = kd
     }
 
-    //% block="红外巡线 %port | 速度%speed"
-    //% group="巡线"
+    /**
+     * Given the basic execution speed of infrared line patrol.
+     * @param port Select connection port
+     * @param speed Basic execution speed
+     */
+    //% block="Infrared Line Patrol %port | speed %speed"
+    //% group="Line Patrol"
     //% weight=95
     //% color=#cfabef
     //% speed.min=0 speed.max=100 speed.defl=55
     //% port.defl=I2CPort.S4
-    export function fiveWayInfraredPidSpeed(port: I2CPort, speed: number) {
+    export function fiveWayInfraredPidSpeed(port: I2CPort,speed: number) {
         pidsetup.setup_speed = Math.round(Math.map(speed, 0, 100, 40, 100))
     }
 
-    //% block="红外巡线 %port | 模式为%mode"
-    //% group="巡线"
+    /**
+     * Given the infrared line patrol mode.
+     * @param port Select connection port
+     * @param mode Infrared line patrol mode
+     */
+    //% block="Infrared Line Patrol %port | 模式为%mode"
+    //% group="Line Patrol"
     //% weight=100
     //% color=#cfabef
     //% port.defl=I2CPort.S4
-    export function fiveWayInfraredPidMode(port: I2CPort, mode: InfraredMode) {
+    export function fiveWayInfraredPidMode(port: I2CPort,mode: InfraredMode) {
         pidsetup.mode = mode
     }
 
@@ -973,16 +1077,23 @@ namespace BanBao {
         return false;
     }
 
-    //% block="红外 %port | %infrared | %mode "
+    /**
+     * Detect if the single infrared sensors meet the given mode.
+     * @param port Select connection port
+     * @param infrared Given the required infrared detection
+     * @param mode Given the infrared mode
+     */
+    //% block="Infrared %port | %infrared | %mode "
     //% weight=50
     //% color=#fd803a
-    //% group="侦测"
+    //% group="Sensing"
     //% port.defl=I2CPort.S4
     export function oneOfFiveWayInfraredDigitalRead(port: I2CPort, infrared: InfraredChoose,
         mode: InfraredMode,
     ): boolean {
         let data
-        switch (infrared) {
+        switch(infrared)
+        {
             case InfraredChoose.L1:
                 data = fiveWayInfraredState(port, mode, 2, 2, 2, 2);
                 break;
@@ -1004,10 +1115,15 @@ namespace BanBao {
         return false
     }
 
-    //% block="红外 %port | %infrared | 反射值 "
+    /**
+     * Read the reflection value of a single infrared sensor
+     * @param port Select connection port
+     * @param infrared Given the required infrared detection
+     */
+    //% block="Infrared %port | %infrared | reflection value "
     //% weight=50
     //% color=#fd803a
-    //% group="侦测"
+    //% group="Sensing"
     //% port.defl=I2CPort.S4
     export function oneOfFiveWayInfraredAnalogRead(port: I2CPort, infrared: InfraredChoose): number {
         let data
@@ -1029,7 +1145,7 @@ namespace BanBao {
                 i2cWriteVal(infraredaddr, 0x55);
                 break;
         }
-        i2cdata = pins.i2cReadNumber(infraredaddr, NumberFormat.UInt8BE, true) << 8
+        i2cdata = pins.i2cReadNumber(infraredaddr,NumberFormat.UInt8BE,true) <<8
         i2cdata |= pins.i2cReadNumber(infraredaddr, NumberFormat.UInt8BE, false)
         return i2cdata;
     }
@@ -1085,38 +1201,46 @@ namespace BanBao {
         }
     }
 
-    function setError(crossing_mode: boolean) {
-        if (crossing_mode === true) {
-            if (pidsetup.crossing_flag === false)
+    function setError(crossing_mode:boolean) {
+        if (crossing_mode === true)
+        {
+            if (pidsetup.crossing_flag===false)
             //(  fiveWayInfraredState(I2CPort.S4, InfraredMode.Black, 2, 2, 2, InfraredMode.Black)
             //     || fiveWayInfraredState(I2CPort.S4, InfraredMode.White, 2, 2, 2, InfraredMode.Black)
             //     || fiveWayInfraredState(I2CPort.S4, InfraredMode.Black, 2, 2, 2, InfraredMode.White))
             //     && 
             {
-                if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, pidsetup.mode, 2, pidsetup.mode)) {
+                if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, pidsetup.mode, 2, pidsetup.mode))
+                {
                     basic.pause(2)
-                    if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, pidsetup.mode, 2, pidsetup.mode)) {
+                    if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, pidsetup.mode, 2, pidsetup.mode))
+                    {
                         //pidsetup.crossing_mode = CrossingMode.Crossroads
                         pidsetup.crossing_flag = true
                     }
                 }
-                else if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode ^ InfraredMode.Black, 2, pidsetup.mode, 2, pidsetup.mode)) {
+                else if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode ^ InfraredMode.Black, 2, pidsetup.mode, 2, pidsetup.mode))
+                {
                     basic.pause(2)
-                    if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode ^ InfraredMode.Black, 2, pidsetup.mode, 2, pidsetup.mode)) {
+                    if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode ^ InfraredMode.Black, 2, pidsetup.mode, 2, pidsetup.mode))
+                    {
                         //pidsetup.crossing_mode = CrossingMode.RightTurnIntersection
-                        pidsetup.crossing_flag = true
+                        pidsetup.crossing_flag = true                        
                     }
                 }
-                else if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, pidsetup.mode, 2, pidsetup.mode ^ InfraredMode.Black)) {
+                else if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, pidsetup.mode, 2, pidsetup.mode ^ InfraredMode.Black))
+                {
                     basic.pause(2)
-                    if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, pidsetup.mode, 2, pidsetup.mode ^ InfraredMode.Black)) {
+                    if (fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, pidsetup.mode, 2, pidsetup.mode ^ InfraredMode.Black))
+                    {
                         //pidsetup.crossing_mode = CrossingMode.LeftTurnIntersection
-                        pidsetup.crossing_flag = true
+                        pidsetup.crossing_flag = true                        
                     }
                 }
             }
-            else if ((fiveWayInfraredState(I2CPort.S4, pidsetup.mode ^ InfraredMode.Black, 2, 2, 2, pidsetup.mode ^ InfraredMode.Black))
-                && pidsetup.crossing_flag === true) {
+             else if ((fiveWayInfraredState(I2CPort.S4, pidsetup.mode ^ InfraredMode.Black, 2, 2, 2, pidsetup.mode ^ InfraredMode.Black))
+                && pidsetup.crossing_flag === true)
+            {
                 pidsetup.crossing_flag = false
                 pidsetup.crossing_count++;
                 pidsetup.crossing_cumulative_count++;
@@ -1141,13 +1265,18 @@ namespace BanBao {
         }
     }
 
-    //% block="红外巡线 %port 直行巡线"
-    //% group="巡线"
+    /**
+     * Start the linear line patrol of infrared line patrol.
+     * @param port Select connection port
+     */
+    //% block="Infrared Line Patrol %port linear line patrol"
+    //% group="Line Patrol"
     //% weight=85
     //% color=#cfabef
     //% port.defl=I2CPort.S4
-    export function fiveWayInfraredStraightLinePatrol(port: I2CPort): void {
-        if (pidsetup.straight_empty_flag === true) {
+    export function fiveWayInfraredStraightLinePatrol(port:I2CPort):void{
+        if (pidsetup.straight_empty_flag === true)
+        {
             pidsetup.straight_empty_flag = false
             pidsetup.P = 0
             pidsetup.I = 0
@@ -1157,18 +1286,23 @@ namespace BanBao {
             pidsetup.pre_error = 0
             pidsetup.crossing_count = 0
             pidsetup.crossing_flag = false
-        }
+        }    
         setError(false)
         pid()
         motor_control()
     }
 
-    //% block="红外巡线 %port 路口巡线 | %count 个"
-    //% group="巡线"
+    /**
+     * Start the crossing line patrol of infrared line patrol.
+     * @param port Select connection port
+     * @param count count of crossing
+     */
+    //% block="Infrared Line Patrol %port crossing line patrol | %count number"
+    //% group="Line Patrol"
     //% weight=80
     //% color=#cfabef
     //% port.defl=I2CPort.S4
-    export function fiveWayInfraredCrossingLinePatrol(port: I2CPort, count: number): void {
+    export function fiveWayInfraredCrossingLinePatrol(port: I2CPort,count:number): void {
         pidsetup.P = 0
         pidsetup.I = 0
         pidsetup.D = 0
@@ -1177,10 +1311,12 @@ namespace BanBao {
         pidsetup.pre_error = 0
         pidsetup.crossing_count = 0
         pidsetup.crossing_flag = false
-        if (pidsetup.straight_empty_flag === false) {
+        if (pidsetup.straight_empty_flag === false)
+        {
             pidsetup.straight_empty_flag = true
         }
-        while (count !== pidsetup.crossing_count) {
+        while(count!==pidsetup.crossing_count)
+        {
             setError(true)
             pid()
             motor_control()
@@ -1189,8 +1325,13 @@ namespace BanBao {
         motorStop(Port.S2, MotorStopMode.Brake)
     }
 
-    //% block="红外巡线 %port 时间巡线 | %time 秒"
-    //% group="巡线"
+    /**
+     * Start the time line patrol of infrared line patrol.
+     * @param port Select connection port
+     * @param time Line patrol time
+     */
+    //% block="Infrared Line Patrol %port time line patrol | %time seconds"
+    //% group="Line Patrol"
     //% weight=75
     //% color=#cfabef
     //% port.defl=I2CPort.S4
@@ -1207,7 +1348,7 @@ namespace BanBao {
         if (pidsetup.straight_empty_flag === false) {
             pidsetup.straight_empty_flag = true
         }
-        while ((Math.round(time * 10) / 10) !== ((Math.round(input.runningTime() / 100) / 10) - (Math.round(systime / 100) / 10))) {
+        while ((Math.round(time*10)/10) !== ((Math.round(input.runningTime() / 100) / 10) - (Math.round(systime / 100) / 10))) {
             setError(false)
             pid()
             motor_control()
@@ -1216,8 +1357,12 @@ namespace BanBao {
         motorStop(Port.S2, MotorStopMode.Brake)
     }
 
-    //% block="红外巡线 %port 路口数量"
-    //% group="巡线"
+    /**
+     * Read the number of crossing that have already passed through the crossing line patrol.
+     * @param port Select connection port
+     */
+    //% block="Infrared Line Patrol %port number of crossing"
+    //% group="Line Patrol"
     //% weight=65
     //% color=#cfabef
     //% port.defl=I2CPort.S4
@@ -1225,13 +1370,19 @@ namespace BanBao {
         return pidsetup.crossing_cumulative_count
     }
 
-    //% block="红外巡线 %port 当前路口 | %direction"
-    //% group="巡线"
+    /**
+     * Perform corresponding processing on the current crossing.
+     * @param port Select connection port
+     * @param direction Running direction
+     */
+    //% block="Infrared Line Patrol %port current intersection | %direction "
+    //% group="Line Patrol"
     //% weight=70
     //% color=#cfabef
     //% port.defl=I2CPort.S4
-    export function fiveWayInfraredCrossingHandler(port: I2CPort, direction: IntersectionDirection): void {
-        switch (direction) {
+    export function fiveWayInfraredCrossingHandler(port: I2CPort,direction:IntersectionDirection): void {
+        switch(direction)
+        {
             //直行
             case IntersectionDirection.GoStraight:
                 motorRotation(Port.S1, pidsetup.setup_speed, MotorDirection.Foreward)
@@ -1308,7 +1459,7 @@ namespace BanBao {
                 //         motorStop(Port.S2, MotorStopMode.Brake)
                 //         break;
                 // }
-
+                
                 motorRotation(Port.S1, pidsetup.setup_speed, MotorDirection.Reversal)
                 motorRotation(Port.S2, pidsetup.setup_speed, MotorDirection.Foreward)
                 basic.pause(200)
@@ -1327,26 +1478,33 @@ namespace BanBao {
     }
 
     /**
-     * TODO: describe your function here
-     * @param num describe parameter here, eg: 0
+     * Execute user events when a given measurement range is detected during infrared line patrol.
+     * @param port Select connection port
+     * @param range Select Comparison Mode
+     * @param num Specific values for comparison
+     * @param body User written tasks
      */
     //% num.min=0 num.max=300 
-    //% block="红外巡线 %port 当距离 | %range | %num CM时"
-    //% group="巡线"
+    //% block="Infrared Line Patrol %port When the distance is | %range | than %num CM"
+    //% group="Line Patrol"
     //% weight=60
     //% color=#cfabef
-    export function fiveWayInfraredUltrasonicJudgeEvent(port: I2CPort, range: UltrasonicRange, num: number, body: () => void): void {
-        control.inBackground(function () {
-            while (true) {
-                if (ultrasonicJudge(Port.S3, range, num)) {
+    export function fiveWayInfraredUltrasonicJudgeEvent(port: I2CPort, range: Range, num: number, body:()=>void): void {
+        control.inBackground(function() {
+            while(true)
+            {
+                if (ultrasonicJudge(Port.S3,range,num))
+                {
                     basic.pause(2)
-                    if (ultrasonicJudge(Port.S3, range, num)) {
+                    if (ultrasonicJudge(Port.S3, range, num))
+                    {
                         // motorStop(Port.S1, MotorStopMode.Brake)
                         // motorStop(Port.S2, MotorStopMode.Brake)
                         body();
                     }
                 }
-                else {
+                else
+                {
                     fiveWayInfraredStraightLinePatrol(I2CPort.S4)
                 }
             }
