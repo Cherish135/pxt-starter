@@ -969,7 +969,7 @@ namespace BanBao {
      * @param ki I Scale factor
      * @param kd D Scale factor
      */
-    //% block="Infrared Line Patrol %port | 参数 Kp%kp | Ki%ki | Kd%kd"
+    //% block="Infrared Line Patrol %port | parameter Kp%kp | Ki%ki | Kd%kd"
     //% group="Line Patrol"
     //% inlineInputMode=inline
     //% weight=90
@@ -1001,7 +1001,7 @@ namespace BanBao {
      * @param port Select connection port
      * @param mode Infrared line patrol mode
      */
-    //% block="Infrared Line Patrol %port | 模式为%mode"
+    //% block="Infrared Line Patrol %port | mode is%mode"
     //% group="Line Patrol"
     //% weight=100
     //% color=#cfabef
