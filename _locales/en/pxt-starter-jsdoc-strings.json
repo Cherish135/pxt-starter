@@ -1,6 +1,6 @@
 {
     "BanBao.clearAll": "Turn off all RGB lights.",
-    "BanBao.clearAll|param|port": "、Select connection port",
+    "BanBao.clearAll|param|port": "Select connection port",
     "BanBao.showColor": "Shows all RGB lights to a given color.",
     "BanBao.showColor|param|port": "Select connection port",
     "BanBao.showColor|param|rgb": "RGB color of the RGB light",

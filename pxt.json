@@ -11,9 +11,11 @@
     "files": [
         "README.md",
         "main.ts",
+        "_locales/en/pxt-starter-jsdoc-strings.json",
         "_locales/zh-CN/pxt-starter-jsdoc-strings.json",
         "_locales/zh-CN/pxt-starter-strings.json",
-        "_locales/en/pxt-starter-jsdoc-strings.json"
+        "_locales/zh-TW/pxt-starter-jsdoc-strings.json",
+        "_locales/zh-TW/pxt-starter-strings.json"
     ],
     "testFiles": [
         "test.ts"
