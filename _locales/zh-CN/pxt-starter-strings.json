@@ -1,0 +1,7 @@
+{
+    "Range.Near|block": "近于",
+    "Range.Far|block": "远于",
+    "Range.Equal|block": "等于",
+    "Led.TurnOff|block": "灭",
+    "Led.Bright|block": "亮"
+}
