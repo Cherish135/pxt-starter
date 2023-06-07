@@ -993,7 +993,10 @@ namespace BanBao {
     //% speed.min=0 speed.max=100 speed.defl=55
     //% port.defl=I2CPort.S4
     export function fiveWayInfraredPidSpeed(port: I2CPort,speed: number) {
-        pidsetup.setup_speed = Math.round(Math.map(speed, 0, 100, 40, 100))
+        if(speed === 0)
+            pidsetup.setup_speed = 0;
+        else
+            pidsetup.setup_speed = Math.round(Math.map(speed, 1, 100, 40, 100))
     }
 
     /**
@@ -1470,7 +1473,7 @@ namespace BanBao {
                 motorRotation(Port.S1, Math.round(Math.map(pidsetup.setup_speed, 40, 100, 45, 80)), MotorDirection.Reversal)
                 motorRotation(Port.S2, Math.round(Math.map(pidsetup.setup_speed, 40, 100, 45, 80)), MotorDirection.Reversal)  //15
                 basic.pause(200)
-                while (!(fiveWayInfraredState(I2CPort.S4, 2, InfraredMode.White, InfraredMode.Black, InfraredMode.White, 2)));
+                while (!(fiveWayInfraredState(I2CPort.S4, 2, pidsetup.mode ^ InfraredMode.Black, pidsetup.mode, pidsetup.mode ^ InfraredMode.Black, 2)));
                 motorStop(Port.S1, MotorStopMode.Brake)
                 motorStop(Port.S2, MotorStopMode.Brake)
                 break;
