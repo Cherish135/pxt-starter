@@ -1475,10 +1475,7 @@ namespace BanBao {
                 //         motorStop(Port.S2, MotorStopMode.Brake)
                 //         break;
                 // }
-                
-                motorRotation(Port.S1, pidsetup.processing_speed, MotorDirection.Foreward)
-                motorRotation(Port.S2, pidsetup.processing_speed, MotorDirection.Reversal)
-                basic.pause(150)
+
                 motorRotation(Port.S1, pidsetup.processing_speed, MotorDirection.Reversal)
                 motorRotation(Port.S2, pidsetup.processing_speed, MotorDirection.Foreward)
                 while (!(fiveWayInfraredState(I2CPort.S4, 2, 2, 2, 2, pidsetup.mode)
