@@ -1478,31 +1478,17 @@ namespace BanBao {
 
                 motorRotation(Port.S1, pidsetup.processing_speed, MotorDirection.Reversal)
                 motorRotation(Port.S2, pidsetup.processing_speed, MotorDirection.Foreward)
-                // while (!(fiveWayInfraredState(I2CPort.S4, 2, 2, 2, 2, pidsetup.mode)
-                //         ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, 2)
-                //         ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, pidsetup.mode)));
-                while(true)
-                {
-                   if(fiveWayInfraredState(I2CPort.S4, 2, 2, 2, 2, pidsetup.mode)
-                    ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, 2)
-                    ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, pidsetup.mode))
-                    {
-                        basic.pause(2)
-                        if(fiveWayInfraredState(I2CPort.S4, 2, 2, 2, 2, pidsetup.mode)
-                        ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, 2)
-                        ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, pidsetup.mode))
-                        {
-                            break;
-                        }
-                    } 
-                }
+                basic.pause(50)
+                while (!(fiveWayInfraredState(I2CPort.S4, 2, 2, 2, 2, pidsetup.mode)
+                    || fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, 2)
+                    || fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, pidsetup.mode)));
                 while (!(fiveWayInfraredState(I2CPort.S4, pidsetup.mode ^ InfraredMode.Black, 2, 2, 2, pidsetup.mode ^ InfraredMode.Black)));
-                motorRotation(Port.S1, pidsetup.processing_speed, MotorDirection.Reversal)
-                motorRotation(Port.S2, pidsetup.processing_speed, MotorDirection.Foreward)
-                basic.pause(150)
+                // motorRotation(Port.S1, pidsetup.processing_speed, MotorDirection.Reversal)
+                // motorRotation(Port.S2, pidsetup.processing_speed, MotorDirection.Foreward)
+                basic.pause(50)
                 motorRotation(Port.S1, pidsetup.processing_speed, MotorDirection.Reversal)
                 motorRotation(Port.S2, pidsetup.processing_speed, MotorDirection.Reversal)  //15
-                while (!(fiveWayInfraredState(I2CPort.S4, 2, 2, 2, 2,pidsetup.mode)));
+                while (!(fiveWayInfraredState(I2CPort.S4, 2, 2, 2, 2, pidsetup.mode)));
                 while (!(fiveWayInfraredState(I2CPort.S4, 2, pidsetup.mode ^ InfraredMode.Black, pidsetup.mode, pidsetup.mode ^ InfraredMode.Black, 2)));
                 motorStop(Port.S1, MotorStopMode.Brake)
                 motorStop(Port.S2, MotorStopMode.Brake)
