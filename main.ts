@@ -1481,6 +1481,21 @@ namespace BanBao {
                 // while (!(fiveWayInfraredState(I2CPort.S4, 2, 2, 2, 2, pidsetup.mode)
                 //         ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, 2)
                 //         ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, pidsetup.mode)));
+                while(true)
+                {
+                   if(fiveWayInfraredState(I2CPort.S4, 2, 2, 2, 2, pidsetup.mode)
+                    ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, 2)
+                    ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, pidsetup.mode))
+                    {
+                        basic.pause(2)
+                        if(fiveWayInfraredState(I2CPort.S4, 2, 2, 2, 2, pidsetup.mode)
+                        ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, 2)
+                        ||fiveWayInfraredState(I2CPort.S4, pidsetup.mode, 2, 2, 2, pidsetup.mode))
+                        {
+                            break;
+                        }
+                    } 
+                }
                 while (!(fiveWayInfraredState(I2CPort.S4, pidsetup.mode ^ InfraredMode.Black, 2, 2, 2, pidsetup.mode ^ InfraredMode.Black)));
                 motorRotation(Port.S1, pidsetup.processing_speed, MotorDirection.Reversal)
                 motorRotation(Port.S2, pidsetup.processing_speed, MotorDirection.Foreward)
