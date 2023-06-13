@@ -127,10 +127,10 @@ enum InfraredMode {
 }
 
 enum InfraredChoose {
-    //% block="L1"
-    L1,
     //% block="L2"
     L2,
+    //% block="L1"
+    L1,
     //% block="M"
     M,
     //% block="R1"
@@ -1110,10 +1110,10 @@ namespace BanBao {
         let data
         switch(infrared)
         {
-            case InfraredChoose.L1:
+            case InfraredChoose.L2:
                 data = fiveWayInfraredState(port, mode, 2, 2, 2, 2);
                 break;
-            case InfraredChoose.L2:
+            case InfraredChoose.L1:
                 data = fiveWayInfraredState(port, 2, mode, 2, 2, 2);
                 break;
             case InfraredChoose.M:
@@ -1145,10 +1145,10 @@ namespace BanBao {
         let data
         let i2cdata
         switch (infrared) {
-            case InfraredChoose.L1:
+            case InfraredChoose.L2:
                 i2cWriteVal(infraredaddr, 0x51);
                 break;
-            case InfraredChoose.L2:
+            case InfraredChoose.L1:
                 i2cWriteVal(infraredaddr, 0x52);
                 break;
             case InfraredChoose.M:

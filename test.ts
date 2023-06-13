@@ -1,9 +1,9 @@
 // 在此处测试；当此软件包作为插件使用时，将不会编译此软件包。
 let num = 0
 basic.forever(function () {
-    if (BanBao.oneOfFiveWayInfraredDigitalRead(I2CPort.S4, InfraredChoose.L1, InfraredMode.White)) {
+    if (BanBao.oneOfFiveWayInfraredDigitalRead(I2CPort.S4, InfraredChoose.L2, InfraredMode.White)) {
         num = 1
-    } else if (BanBao.oneOfFiveWayInfraredDigitalRead(I2CPort.S4, InfraredChoose.L2, InfraredMode.White)) {
+    } else if (BanBao.oneOfFiveWayInfraredDigitalRead(I2CPort.S4, InfraredChoose.L1, InfraredMode.White)) {
         num = 2
     } else if (BanBao.oneOfFiveWayInfraredDigitalRead(I2CPort.S4, InfraredChoose.M, InfraredMode.White)) {
         num = 3
