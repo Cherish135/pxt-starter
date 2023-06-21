@@ -18,11 +18,11 @@ enum Port {
 }
 
 enum Range {
-    //% block="Near"
+    //% block="<"
     Near,
-    //% block="Far"
+    //% block=">"
     Far,
-    //% block="Equal"
+    //% block="="
     Equal,
 }
 
@@ -148,7 +148,7 @@ enum IntersectionDirection {
     TurnRight,
     //% block="Stop"
     Stop,
-    //% block="TurnRound"
+    //% block="Turn Round"
     TurnRound
 }
 
@@ -383,10 +383,9 @@ namespace BanBao {
 
     /* 像素灯 */
 
-
     /**
      * Turn off all RGB lights.
-     * @param port Select connection port
+     * @param port Selecting connection port
      */
     //% blockId="neopixel_clear" block="RGB %port turn off"
     //% group="Display" 
@@ -413,11 +412,11 @@ namespace BanBao {
     }
 
     /**
-     * Shows all RGB lights to a given color.
-     * @param port Select connection port
-     * @param rgb RGB color of the RGB light
+     * All pixel lights are displayed to specified color.
+     * @param port Selecting connection port
+     * @param rgb RGB color of the RGB lights
      */
-    //% blockId="neopixel_set_strip_color" block="RGB %port|all lights color %rgb"
+    //% blockId="neopixel_set_strip_color" block="RGB %port|full bright color %rgb"
     //% group="Display" 
     //% color=#88cb7f
     //% weight=10
@@ -442,7 +441,7 @@ namespace BanBao {
 
     /**
      * Set the brightness of RGB lights.
-     * @param port Select connection port
+     * @param port Selecting connection port
      * @param bright Brightness value
      */
     //% blockId="neopixel_set_brightness" block="RGB %port brightness | %bright"
@@ -470,9 +469,9 @@ namespace BanBao {
     }
 
     /**
-     * Display the given RGB light as the given color.
-     * @param port Select connection port
-     * @param pixeloffset Given RGB light
+     * Specified RGB lights is displayed in the specified color.
+     * @param port Selecting connection port
+     * @param pixeloffset Specified RGB light
      * @param rgb RGB color of the RGB light
      */
     //% block="RGB %port Light | %pixeloffset color | %rgb" 
@@ -498,9 +497,9 @@ namespace BanBao {
     }
 
     /**
-     * Display the given RGB light as the color corresponding to the given RGB value.
-     * @param port Select connection port
-     * @param pixeloffset Given RGB light
+     * Displays the specified RGB light as the color corresponding to the specified RGB value.
+     * @param port Selecting connection port
+     * @param pixeloffset Specified RGB Light
      * @param red Red value
      * @param green Green value
      * @param blue Blue value
@@ -532,9 +531,9 @@ namespace BanBao {
     }
 
     /**
-     * Turn off the given RGB light.
-     * @param port Select connection port
-     * @param pixeloffset Given RGB light
+     * Turn off the specific RGB light.
+     * @param port Selecting connection port
+     * @param pixeloffset Specified RGB light
      */
     //% block="RGB %port turn off Light | %pixeloffset" 
     //% pixeloffset.defl=1 pixeloffset.min=1 pixeloffset.max=9
@@ -561,10 +560,10 @@ namespace BanBao {
 
     //控制直流电机正/反转函数
     /**
-     * Control the forward and reverse rotation of DC motors.
-     * @param port Select connection port
-     * @param power DC motor power
-     * @param direction Direction of rotation of DC motor
+     * The DC motor is controlled to turning foreward and reversal.
+     * @param port Selecting connection port
+     * @param power The DC motor power
+     * @param direction The DC motor rotation direction
      */
     //% block="DC motor %port power | %power |%direction" 
     //% weight=80
@@ -621,9 +620,9 @@ namespace BanBao {
 
     //控制直流电机停止函数
     /**
-     * Control the stop of the DC motor.
-     * @param port Select connection port
-     * @param mode Select the stop mode of the DC motor
+     * Controlling the DC motor stop.
+     * @param port Selecting connection port
+     * @param mode Selecting DC motor stop mode
      */
     //% block="DC motor %port | %mode stop" 
     //% weight=80
@@ -662,11 +661,11 @@ namespace BanBao {
 
     /* 事件 */
     /**
-     * Execute user events when a given measurement range is detected.
-     * @param port Select connection port
-     * @param range Select Comparison Mode
-     * @param num Specific values for comparison
-     * @param body User written tasks
+     * Execute user events when distance sensor detect a specified measurement range.
+     * @param port Selecting connection port
+     * @param range Selecting comparison range
+     * @param num Specifying the distance comparison value
+     * @param body User-written task
      */
     //% num.min=0 num.max=300 
     //% block="Distance %port When the distance is | %range | than %num CM"
@@ -690,14 +689,14 @@ namespace BanBao {
 
     //超声波距离判断函数
     /**
-     * Detect if the given distance range is met.
-     * @param port Select connection port
-     * @param range Select Comparison Mode
-     * @param num Specific values for comparison
+     * Distance sensor detects whether it is within a specified range.
+     * @param port Selecting connection port
+     * @param range Selecting comparison range
+     * @param num Specifying the distance comparison value
      */
     //% weight=20
     //% num.min=0 num.max=300 
-    //% block="distance %value distance | %range | %num CM"
+    //% block="Distance %port distance is | %range | than %num CM"
     //% group="Sensing" 
     //% color=#fd803a
     export function ultrasonicJudge(port: Port, range: Range, num: number): boolean {
@@ -723,11 +722,11 @@ namespace BanBao {
 
     //读取超声波距离函数
      /**
-     * Read Detected Distance.
-     * @param port Select connection port
+     * Read the distance detected by the distance sensor.
+     * @param port Selecting connection port
      */
     //% weight=20
-    //% block="distance %value distance(CM)"
+    //% block="Distance %port distance(CM)"
     //% group="Sensing" 
     //% color=#fd803a
     export function ultrasonicDistance(port: Port): number {
@@ -898,31 +897,31 @@ namespace BanBao {
     /* 红外巡线 */
 
     /**
-     * Detect if the five infrared sensors meet the given mode.
-     * @param port Select connection port
-     * @param mode1 Given the first infrared mode
-     * @param mode2 Given the second infrared mode
-     * @param mode3 Given the third infrared mode
-     * @param mode4 Given the fourth infrared mode
-     * @param mode5 Given the fifth infrared mode
+     * Detecting whether the five infrared sensors meet the specified mode.
+     * @param port Selecting connection port
+     * @param L2_mode Specifying L2 infrared mode
+     * @param L1_mode Specifying L1 infrared mode
+     * @param M_mode Specifying M infrared mode
+     * @param R1_mode Specifying R1 infrared mode
+     * @param R2_mode Specifying R2 infrared mode
      */
-    //% block="Infrared Line Patrol %port | %mode1 | %mode2 | %mode3 | %mode4 | %mode5" 
+    //% block="Infrared Line Patrol %port | %L2_mode | %L1_mode | %M_mode | %R1_mode | %R2_mode" 
     //% weight=50
     //% color=#cfabef
     //% inlineInputMode=inline
     //% group="Line Patrol"
     //% port.defl=I2CPort.S4
     export function fiveWayInfraredRead(port: I2CPort, 
-    mode1: InfraredMode, 
-    mode2: InfraredMode,
-    mode3: InfraredMode, 
-    mode4: InfraredMode,
-    mode5: InfraredMode
+    L2_mode: InfraredMode, 
+    L1_mode: InfraredMode,
+    M_mode: InfraredMode, 
+    R1_mode: InfraredMode,
+    R2_mode: InfraredMode
     ):boolean
     {
         let i2cdata = 0;
         let value = 0;
-        value = mode1 << 4 | mode2 << 3 | mode3 << 2 | mode4 << 1 | mode5 << 0
+        value = L2_mode << 4 | L1_mode << 3 | M_mode << 2 | R1_mode << 1 | R2_mode << 0
         i2cWriteVal(infraredaddr,0x5a);
         i2cdata = i2cReadVal8(infraredaddr);  
         i2cdata &= ~0xE0
@@ -934,26 +933,26 @@ namespace BanBao {
     }
 
     /**
-     * Detect if the middle three infrared sensors meet the given mode.
-     * @param port Select connection port
-     * @param mode1 Given the first infrared mode
-     * @param mode2 Given the second infrared mode
-     * @param mode3 Given the third infrared mode
+     * Detecting whether the three infrared sensors meet the specified mode.
+     * @param port Selecting connection port
+     * @param L1_mode Specifying L1 infrared mode
+     * @param M_mode Specifying M infrared mode
+     * @param R1_mode Specifying R1 infrared mode
      */
-    //% block="Infrared Line Patrol %port | %mode1 | %mode2 | %mode3" 
+    //% block="Infrared Line Patrol %port | %L1_mode | %M_mode | %R1_mode" 
     //% weight=55
     //% color=#cfabef
     //% inlineInputMode=inline
     //% group="Line Patrol"
     //% port.defl=I2CPort.S4
     export function threeWayInfraredRead(port: I2CPort,
-        mode1: InfraredMode,
-        mode2: InfraredMode,
-        mode3: InfraredMode,
+        L1_mode: InfraredMode,
+        M_mode: InfraredMode,
+        R1_mode: InfraredMode,
     ): boolean {
         let i2cdata = 0;
         let value = 0;
-        value = mode1 << 3 | mode2 << 2 | mode3 << 1
+        value = L1_mode << 3 | M_mode << 2 | R1_mode << 1
         i2cWriteVal(infraredaddr, 0x5a);
         i2cdata = i2cReadVal8(infraredaddr);
         i2cdata &= ~0xF1
@@ -965,10 +964,10 @@ namespace BanBao {
 
     /**
      * Adjusting the PID value of infrared line patrol.
-     * @param port Select connection port
-     * @param kp P Scale factor
-     * @param ki I Scale factor
-     * @param kd D Scale factor
+     * @param port Selecting connection port
+     * @param kp P scale factor
+     * @param ki I scale factor
+     * @param kd D scale factor
      */
     //% block="Infrared Line Patrol %port | parameter Kp%kp | Ki%ki | Kd%kd"
     //% group="Line Patrol"
@@ -983,8 +982,8 @@ namespace BanBao {
     }
 
     /**
-     * Given the intersection processing speed of infrared line patrol.
-     * @param port Select connection port
+     * Specifying the intersection processing speed of infrared line patrol.
+     * @param port Selecting connection port
      * @param speed intersection processing speed
      */
     //% block="Infrared Line Patrol %port | intersection processing speed %speed"
@@ -998,8 +997,8 @@ namespace BanBao {
     }
 
     /**
-     * Given the basic execution speed of infrared line patrol.
-     * @param port Select connection port
+     * Specifying the basic execution speed of infrared line patrol.
+     * @param port Selecting connection port
      * @param speed Basic execution speed
      */
     //% block="Infrared Line Patrol %port | patrol speed %speed"
@@ -1013,11 +1012,11 @@ namespace BanBao {
     }
 
     /**
-     * Given the infrared line patrol mode.
-     * @param port Select connection port
+     * Specifying infrared line patrol mode.
+     * @param port Selecting connection port
      * @param mode Infrared line patrol mode
      */
-    //% block="Infrared Line Patrol %port | mode is%mode"
+    //% block="Infrared Line Patrol %port | mode is %mode"
     //% group="Line Patrol"
     //% weight=100
     //% color=#cfabef
@@ -1094,10 +1093,10 @@ namespace BanBao {
     }
 
     /**
-     * Detect if the single infrared sensors meet the given mode.
-     * @param port Select connection port
-     * @param infrared Given the required infrared detection
-     * @param mode Given the infrared mode
+     * Detecting whether the single infrared sensor meet the specified mode.
+     * @param port Selecting connection port
+     * @param infrared Specifying the infrared that is need to detect
+     * @param mode Specifying infrared detection mode
      */
     //% block="Infrared %port | %infrared | %mode "
     //% weight=50
@@ -1132,9 +1131,9 @@ namespace BanBao {
     }
 
     /**
-     * Read the reflection value of a single infrared sensor
-     * @param port Select connection port
-     * @param infrared Given the required infrared detection
+     * Read the reflective value of single infrared sensor.
+     * @param port Selecting connection port
+     * @param infrared Specifying the infrared that is need to detect
      */
     //% block="Infrared %port | %infrared | reflection value "
     //% weight=50
@@ -1282,10 +1281,10 @@ namespace BanBao {
     }
 
     /**
-     * Start the linear line patrol of infrared line patrol.
-     * @param port Select connection port
+     * Using the infrared patrol sensor for straight patrol.
+     * @param port Selecting connection port
      */
-    //% block="Infrared Line Patrol %port linear line patrol"
+    //% block="Infrared Line Patrol %port Straight line patrol"
     //% group="Line Patrol"
     //% weight=85
     //% color=#cfabef
@@ -1309,16 +1308,16 @@ namespace BanBao {
     }
 
     /**
-     * Start the crossing line patrol of infrared line patrol.
-     * @param port Select connection port
-     * @param count count of crossing
+     * Using the infrared patrol sensor for intersection patrol.
+     * @param port Selecting connection port
+     * @param quantity The quantity of intersection patrol that is need 
      */
-    //% block="Infrared Line Patrol %port crossing line patrol | %count number"
+    //% block="Infrared Line Patrol %port Intersection line patrol | %quantity piece"
     //% group="Line Patrol"
     //% weight=80
     //% color=#cfabef
     //% port.defl=I2CPort.S4
-    export function fiveWayInfraredCrossingLinePatrol(port: I2CPort,count:number): void {
+    export function fiveWayInfraredIntersectionLinePatrol(port: I2CPort,quantity:number): void {
         pidsetup.P = 0
         pidsetup.I = 0
         pidsetup.D = 0
@@ -1331,7 +1330,7 @@ namespace BanBao {
         {
             pidsetup.straight_empty_flag = true
         }
-        while(count!==pidsetup.crossing_count)
+        while(quantity!==pidsetup.crossing_count)
         {
             setError(true)
             pid()
@@ -1342,8 +1341,8 @@ namespace BanBao {
     }
 
     /**
-     * Start the time line patrol of infrared line patrol.
-     * @param port Select connection port
+     * Using the infrared patrol sensor for time patrol.
+     * @param port Selecting connection port
      * @param time Line patrol time
      */
     //% block="Infrared Line Patrol %port time line patrol | %time seconds"
@@ -1374,29 +1373,29 @@ namespace BanBao {
     }
 
     /**
-     * Read the number of crossing that have already passed through the crossing line patrol.
-     * @param port Select connection port
+     * Reading the quantity of intersection that have been passed through by intersection partol.
+     * @param port Selecting connection port
      */
-    //% block="Infrared Line Patrol %port number of crossing"
+    //% block="Infrared Line Patrol %port quantity of Intersection "
     //% group="Line Patrol"
     //% weight=65
     //% color=#cfabef
     //% port.defl=I2CPort.S4
-    export function fiveWayInfraredCrossingRead(port: I2CPort): number {
+    export function fiveWayInfraredIntersectionQuantityRead(port: I2CPort): number {
         return pidsetup.crossing_cumulative_count
     }
 
     /**
-     * Perform corresponding processing on the current crossing.
-     * @param port Select connection port
-     * @param direction Running direction
+     * Dealing with the current intersection.
+     * @param port Selecting connection port
+     * @param direction Moving Direction
      */
     //% block="Infrared Line Patrol %port current intersection | %direction "
     //% group="Line Patrol"
     //% weight=70
     //% color=#cfabef
     //% port.defl=I2CPort.S4
-    export function fiveWayInfraredCrossingHandler(port: I2CPort,direction:IntersectionDirection): void {
+    export function fiveWayInfraredIntersectionHandler(port: I2CPort,direction:IntersectionDirection): void {
         switch(direction)
         {
             //直行
@@ -1497,11 +1496,11 @@ namespace BanBao {
     }
 
     /**
-     * Execute user events when a given measurement range is detected during infrared line patrol.
-     * @param port Select connection port
-     * @param range Select Comparison Mode
-     * @param num Specific values for comparison
-     * @param body User written tasks
+     * In the process of infrared patrol, execute user events when distance sensor detect a specified measurement range.
+     * @param port Selecting connection port
+     * @param range Selecting comparison range
+     * @param num Specifying the distance comparison value
+     * @param body User-written task
      */
     //% num.min=0 num.max=300 
     //% block="Infrared Line Patrol %port When the distance is | %range | than %num CM"
