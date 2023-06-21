@@ -1363,7 +1363,7 @@ namespace BanBao {
         if (pidsetup.straight_empty_flag === false) {
             pidsetup.straight_empty_flag = true
         }
-        while ((Math.round(time*10)/10) !== ((Math.round(input.runningTime() / 100) / 10) - (Math.round(systime / 100) / 10))) {
+        while ((Math.round(time*10)/10) > ((Math.round(input.runningTime() / 100) / 10) - (Math.round(systime / 100) / 10))) {
             setError(false)
             pid()
             motor_control()
